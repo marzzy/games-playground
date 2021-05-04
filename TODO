@@ -1,0 +1,14 @@
+
+Project Goals:
+  ☐ implement x-o game
+
+Technical needs:
+  ✔ Initial Project repo @done(21-05-04 13:10)
+  ☐ Complete CRA Doc instructions
+    bookmark: https://create-react-app.dev/docs/updating-to-new-releases
+  ☐ Configure Linter
+  ☐ Configure Router
+  ☐ Configure Coverall
+  ☐ Configure Travis/CircleCi
+  ☐ Configure Deployment
+  ☐ Configure PWA's items
