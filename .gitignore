@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 TODO.example
+
+# not using npm
+package-lock.json
