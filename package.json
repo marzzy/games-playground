@@ -1,6 +1,6 @@
 {
   "name": "my-little-games",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/react": "11.1.0",
@@ -12,7 +12,6 @@
     "web-vitals": "1.0.1"
   },
   "devDependencies": {
-
     "@types/jest": "26.0.15",
     "@types/node": "15.0.1",
     "@types/react": "17.0.0",
