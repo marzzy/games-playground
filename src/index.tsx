@@ -1,12 +1,30 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from 'games/App';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import NotFound from 'pages/notFound/notFound';
+import Navbar from 'components/Navbar';
 import reportWebVitals from './reportWebVitals';
+import routes from './components/routes';
+import 'index.css';
 
 ReactDOM.render(
   <StrictMode>
-    <App />
+    <Router>
+      <Switch>
+        {routes.map((route) => (
+          <Route exact={route.name === 'home'} path={route.path}>
+            {route.component}
+          </Route>
+        ))}
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+    </Router>
   </StrictMode>,
   document.getElementById('root'),
 );
