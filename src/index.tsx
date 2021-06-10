@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from 'games/App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
