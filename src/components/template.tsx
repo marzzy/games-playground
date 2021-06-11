@@ -3,10 +3,10 @@ import Navbar from 'components/Navbar';
 
 function PageTemplate({ children }: {children: ReactNode}) {
   return (
-    <main>
+    <div>
       <Navbar />
       {children}
-    </main>
+    </div>
   );
 }
 

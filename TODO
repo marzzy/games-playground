@@ -5,12 +5,15 @@ Project Goals:
 Technical needs:
   ✔ Initial Project repo @done(21-05-04 13:10)
   ✔ Complete CRA Doc instructions
-    bookmark: https://create-react-app.dev/docs/title-and-meta-tags
   ✔ Configure Linter @done(21-05-04 16:26)
   ✔ Check the Deployment with last updates @done(21-05-04 16:38)
   ✔ Configure Router
   ✔ Check the Deployment with last updates
+  ✔ Configure Deployment
+
+After the first release:
+  ☐ Robots.txt
+  ☐ Set it as a marzzy subdomain
+  ☐ Configure PWA's items
   ☐ Configure Coverall
   ☐ Configure Travis/CircleCi
-  ✔ Configure Deployment
-  ☐ Configure PWA's items
