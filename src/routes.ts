@@ -1,11 +1,11 @@
-import App from 'pages/home/App';
+import Home from 'pages/home';
 import XO from 'pages/xo/xo';
 
 export default [
   {
     path: '/',
     name: 'home',
-    component: App,
+    component: Home,
   },
   {
     path: '/xo',

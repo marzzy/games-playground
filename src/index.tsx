@@ -6,30 +6,27 @@ import {
   Route,
 } from 'react-router-dom';
 import NotFound from 'pages/notFound/notFound';
-import Navbar from 'components/Navbar';
-import reportWebVitals from './reportWebVitals';
-import routes from './components/routes';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from 'theme';
+import routes from './routes';
 import 'index.css';
 
 ReactDOM.render(
   <StrictMode>
-    <Router>
-      <Switch>
-        {routes.map((route) => (
-          <Route exact={route.name === 'home'} path={route.path}>
-            {route.component}
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Switch>
+          {routes.map((route) => (
+            <Route exact={route.name === 'home'} path={route.path} key={route.path}>
+              {route.component}
+            </Route>
+          ))}
+          <Route path="*">
+            <NotFound />
           </Route>
-        ))}
-        <Route path="*">
-          <NotFound />
-        </Route>
-      </Switch>
-    </Router>
+        </Switch>
+      </Router>
+    </ThemeProvider>
   </StrictMode>,
   document.getElementById('root'),
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
