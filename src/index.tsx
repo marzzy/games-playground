@@ -17,9 +17,7 @@ ReactDOM.render(
       <Router>
         <Switch>
           {routes.map((route) => (
-            <Route exact={route.name === 'home'} path={route.path} key={route.path}>
-              {route.component}
-            </Route>
+            <Route exact={route.name === 'home'} path={route.path} key={route.path} component={route.component} />
           ))}
           <Route path="*">
             <NotFound />
