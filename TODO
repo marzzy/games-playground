@@ -1,6 +1,11 @@
 
 Project Goals:
-  ☐ implement x-o game
+  ☐ implement tic-tac-toc game @today
+  needed:
+    ✔ implement welcome page
+    ☐ implement skip welcome button
+    ☐ 404 page (use https://codepen.io/pgalor/pen/OeRWJQ)
+    ☐ implement dark/light theme changing
 
 Technical needs:
   ✔ Initial Project repo @done(21-05-04 13:10)
@@ -12,6 +17,8 @@ Technical needs:
   ✔ Configure Deployment
 
 After the first release:
+  ☐ Add change log + set its link to readme
+  ☐ Complete read me and add project link to it
   ☐ Robots.txt
   ☐ Set it as a marzzy subdomain
   ☐ Configure PWA's items

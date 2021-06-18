@@ -11,7 +11,6 @@ import {
   sizing,
   spacing,
   typography,
-
 } from '@material-ui/system';
 
 const Box = styled('div')(breakpoints(

@@ -1,14 +1,13 @@
 import PageTemplate from 'components/template';
 
-function XoGame() {
+function TicTacToeGame() {
   return (
     <PageTemplate>
-
       <p>
-        x-o game will be implement here
+        tic-tac-toe game will be implement here
       </p>
     </PageTemplate>
   );
 }
 
-export default XoGame;
+export default TicTacToeGame;
