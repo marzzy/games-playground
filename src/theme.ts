@@ -4,7 +4,7 @@ type tBreakpointValues = {
 type tColors = {
   [themeKey in 'light' | 'dark']: {
     [key : string]: {
-      [shadeKey: string ]: string
+      [shadeKey in 'normal' | 'dark30' | 'light30' | 'contrastColor']?: string
     }
   }
 };

@@ -1,5 +1,6 @@
 import Home from 'pages/home';
-import XO from 'pages/xo/xo';
+import TicTacToe from 'pages/tic-tac-toe';
+import Kit from 'pages/kit';
 
 export default [
   {
@@ -8,8 +9,13 @@ export default [
     component: Home,
   },
   {
-    path: '/xo',
-    name: 'x-o',
-    component: XO,
+    path: '/tic-tac-toe',
+    name: 'Tic-tac-toe',
+    component: TicTacToe,
+  },
+  {
+    path: '/kit',
+    name: 'kit',
+    component: Kit,
   },
 ];
