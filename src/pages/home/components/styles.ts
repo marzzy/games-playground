@@ -50,7 +50,7 @@ const useStyle = makeStyles((theme : any) => ({
   },
   textWrapper: {
     width: 0,
-    color: 'white',
+    color: theme.palette.common.white,
     animation: '$typing 9s steps(40), $blink 0.5s step-end infinite alternate',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -80,6 +80,18 @@ const useStyle = makeStyles((theme : any) => ({
     '50%': {
       borderColor: 'transparent',
     },
+  },
+
+  button: {
+    position: 'absolute',
+    bottom: '10px',
+    right: '10px',
+    background: 'transparent',
+    border: 'none',
+    color: theme.palette.common.white,
+    fontSize: '1.5em',
+    fontFamily: 'monospace',
+    cursor: 'pointer',
   },
 }));
 

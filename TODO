@@ -3,7 +3,7 @@ Project Goals:
   ☐ implement tic-tac-toc game @today
   needed:
     ✔ implement welcome page
-    ☐ implement skip welcome button
+    ✔ implement skip welcome button
     ☐ 404 page (use https://codepen.io/pgalor/pen/OeRWJQ)
     ☐ implement dark/light theme changing
 

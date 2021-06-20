@@ -25,6 +25,9 @@ function Loading(props : {setIsLoaded: Function}) {
             Welcome to the chamber of Games
           </h1>
         )}
+        <button className={classes.button} type="button" onClick={finishLoading}>
+          skip
+        </button>
       </div>
     </>
   );
