@@ -4,7 +4,8 @@ Project Goals:
   needed:
     ✔ implement welcome page
     ✔ implement skip welcome button
-    ☐ 404 page (use https://codepen.io/pgalor/pen/OeRWJQ)
+    ✔ style 404 page
+    ☐ implement first game
     ☐ implement dark/light theme changing
 
 Technical needs:
