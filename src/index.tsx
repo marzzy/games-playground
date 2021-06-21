@@ -16,9 +16,15 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
-          {routes.map((route) => (
-            <Route exact={route.name === 'home'} path={route.path} key={route.path} component={route.component} />
-          ))}
+          {routes.map((route) => {
+            const Component = route.component;
+
+            return (
+              <Route exact={route.name === 'home'} path={route.path} key={route.path}>
+                <Component />
+              </Route>
+            );
+          })}
           <Route path="*">
             <NotFound />
           </Route>

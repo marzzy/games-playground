@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
+import {
+  Link,
+} from 'react-router-dom';
 import Box from 'components/Box';
 import BackgroundImage from 'assets/main-bg.png';
 import Loading from './components/loading';
@@ -30,7 +33,7 @@ function Home() {
   const classes = useStyles();
 
   return (
-    <Box className={classes.wrapper} overflow="hidden">
+    <Box className={classes.wrapper} overflow="hidden" data-test="home-page-wrapper">
       {isLoaded ? (
         <>
           <div className={classes.imgCover} />
@@ -39,7 +42,9 @@ function Home() {
               It&apos;s game time
             </h1>
             <ul>
-              <li>games01</li>
+              <li>
+                <Link to="/tic-tac-toe">tic - tac - toe</Link>
+              </li>
               <li>games02</li>
               <li>games03</li>
               <li>games04</li>
