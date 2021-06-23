@@ -86,6 +86,7 @@ function TicTacToeGame() {
                 key={`${name}`}
                 data-button-name={name}
                 data-button-order={index}
+                data-test="gamesButton"
                 onClick={handleClick}
               >
                 {status}
