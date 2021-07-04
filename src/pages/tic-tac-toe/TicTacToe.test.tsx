@@ -28,13 +28,38 @@ test('renders 9 buttons in page', () => {
 });
 
 test('change button text by click', () => {
-  const button = screen.getAllByTestId('gamesButton')[0];
+  let buttons = screen.getAllByText('N');
+  expect(buttons).toHaveLength(9);
 
-  // console.log(button);
+  fireEvent.click(buttons[0]);
+  buttons = screen.getAllByText('N');
+  expect(buttons).toHaveLength(8);
+  const changedButton = screen.getAllByText(/X|O$/i);
+  expect(changedButton).toHaveLength(1);
+});
 
-  fireEvent.click(button);
+test('a button can not be changes twice', () => {
+  const buttons = screen.queryAllByTestId('gamesButton');
 
-  // Wait for page to update with query text
-  // const items = await screen.findAllByText(/Item #[0-9]: /)
-  // expect(items).toHaveLength(10)
+  fireEvent.click(buttons[0]);
+
+  const changedButton = screen.getByText(/X|O$/i);
+  expect(changedButton).toBeDisabled();
+});
+
+test('player01 is always X', () => {
+  const buttons = screen.queryAllByTestId('gamesButton');
+
+  fireEvent.click(buttons[0]);
+
+  const changedButton = screen.getAllByText('X');
+  expect(changedButton).toHaveLength(1);
+});
+
+test('player02 is always O', () => {
+  fireEvent.click(screen.queryAllByTestId('gamesButton')[0]);
+  fireEvent.click(screen.queryAllByTestId('gamesButton')[1]);
+
+  const changedButton = screen.getAllByText('O');
+  expect(changedButton).toHaveLength(1);
 });
