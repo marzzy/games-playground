@@ -1,4 +1,6 @@
-import { MouseEvent, useState } from 'react';
+import {
+  MouseEvent, useRef, useState,
+} from 'react';
 import PageTemplate from 'components/template';
 import { makeStyles } from '@material-ui/styles';
 
@@ -17,19 +19,12 @@ const useStyles = makeStyles({
   },
 });
 
-//  00 | 10 | 20
-//  01 | 11 | 21
-//  02 | 12 | 22
-
 //  b0 | b1 | b2
 //  b3 | b4 | b5
 //  b6 | b7 | b8
-
-// a+b+c = 33 || 0x || 1x || 2x || x0 || x1 || x2
-
-const helperMap = {
+const helperMap: { [key :string]: object } = {
   b0: {
-    b1: 'b2', b3: 'b6', b4: 'b8', b2: 'b1', b6: 'b3', b8: 'b4',
+    b1: 'b2', b2: 'b1', b3: 'b6', b6: 'b3', b4: 'b8', b8: 'b4',
   },
   b1: {
     b2: 'b0', b0: 'b2', b7: 'b4', b4: 'b7',
@@ -57,43 +52,35 @@ const helperMap = {
   },
 };
 
-const buttonsPosHashMap = {
-  button01: [0, 0],
-  button02: [1, 0],
-  button03: [2, 0],
-  button04: [0, 1],
-  button05: [1, 1],
-  button06: [2, 1],
-  button07: [0, 2],
-  button08: [1, 2],
-  button09: [2, 2],
-};
-
 const initialButtonsState = [
-  ['button01', 'N'],
-  ['button02', 'N'],
-  ['button03', 'N'],
-  ['button04', 'N'],
-  ['button05', 'N'],
-  ['button06', 'N'],
-  ['button07', 'N'],
-  ['button08', 'N'],
-  ['button09', 'N'],
+  ['b0', 'N'],
+  ['b1', 'N'],
+  ['b2', 'N'],
+  ['b3', 'N'],
+  ['b4', 'N'],
+  ['b5', 'N'],
+  ['b6', 'N'],
+  ['b7', 'N'],
+  ['b8', 'N'],
 ];
 
 const players = [
-  { name: 'player 01', value: 'X' },
-  { name: 'player 02', value: 'O' },
+  { name: 'player-1', value: 'X' },
+  { name: 'player-2', value: 'O' },
 ];
+
+const initialRefObject : { [key in 'X' | 'O']:{ [key :string]: string} } = { X: {}, O: {} };
 
 function TicTacToeGame() {
   const classes = useStyles();
+  const playersNeededToWinList = useRef(initialRefObject);
   const [
     { name: firstPlayerName, value: firstPlayerValue },
     { name: secoundPlayerName, value: secoundPlayerValue },
   ] = players;
   const [buttonsState, setButtonState] = useState(initialButtonsState);
   const [isItfirstPlayerTurn, setIsItfirstPlayerTurn] = useState(true);
+  const [winnerName, setWinnerName] = useState('');
 
   function updateButtonStates(targetName:string, targetOrder:number) {
     const newState = [...buttonsState];
@@ -105,6 +92,28 @@ function TicTacToeGame() {
     setButtonState(newState);
   }
 
+  function updateNeededToWinLists(buttonName: string) {
+    const { current: { X: playerOneList, O: playerTwoList } } = playersNeededToWinList;
+    const currentPlayerList = isItfirstPlayerTurn ? playerOneList : playerTwoList;
+    const otherplayerList = isItfirstPlayerTurn ? playerTwoList : playerOneList;
+
+    if (buttonName in currentPlayerList) {
+      if (currentPlayerList[buttonName] === 'done') {
+        setWinnerName(isItfirstPlayerTurn ? firstPlayerName : secoundPlayerName);
+      } else {
+        currentPlayerList[currentPlayerList[buttonName]] = 'done';
+        delete currentPlayerList[buttonName];
+      }
+    } else {
+      Object.assign(currentPlayerList, helperMap[buttonName]);
+    }
+
+    if (buttonName in otherplayerList) {
+      delete otherplayerList[otherplayerList[buttonName]];
+      delete otherplayerList[buttonName];
+    }
+  }
+
   function toggleCurrentPlayer() {
     setIsItfirstPlayerTurn(!isItfirstPlayerTurn);
   }
@@ -112,8 +121,12 @@ function TicTacToeGame() {
   function handleClick(event: MouseEvent<HTMLElement>) {
     const buttonName = String(event.currentTarget.getAttribute('data-button-name'));
     const buttonOrder = Number(event.currentTarget.getAttribute('data-button-order'));
+
     updateButtonStates(buttonName, buttonOrder);
-    toggleCurrentPlayer();
+    updateNeededToWinLists(buttonName);
+    if (!winnerName) {
+      toggleCurrentPlayer();
+    }
   }
 
   return (
@@ -144,6 +157,13 @@ function TicTacToeGame() {
             {' '}
             {isItfirstPlayerTurn ? firstPlayerName : secoundPlayerName}
           </div>
+          {winnerName && (
+            <h1>
+              {winnerName}
+              {' '}
+              is the Winner
+            </h1>
+          )}
         </div>
       </div>
     </PageTemplate>
