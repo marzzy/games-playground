@@ -13,7 +13,8 @@ function TicTacToeGame() {
       winnerName,
     },
     action: {
-      handleClick,
+      handlerPlayerPickAButton,
+      resetTheGame,
     },
   } = useTicTacToe();
 
@@ -31,8 +32,8 @@ function TicTacToeGame() {
                 data-button-name={name}
                 data-button-order={index}
                 data-test="gamesButton"
-                onClick={handleClick}
-                disabled={status !== 'N'}
+                onClick={handlerPlayerPickAButton}
+                disabled={status !== 'N' || !!winnerName}
               >
                 {status}
               </button>
@@ -48,11 +49,21 @@ function TicTacToeGame() {
               : secoundPlayerName}
           </div>
           {winnerName && (
-            <h1>
-              {winnerName}
-              {' '}
-              is the Winner
-            </h1>
+            <>
+              <h1>
+                {winnerName}
+                {' '}
+                is the Winner
+              </h1>
+              <p>game is over</p>
+              <button
+                type="button"
+                data-test="restartButton"
+                onClick={resetTheGame}
+              >
+                start over
+              </button>
+            </>
           )}
         </div>
       </div>

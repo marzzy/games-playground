@@ -26,9 +26,16 @@ function useTicTacToe() {
   }
 
   function updateNeededToWinLists(buttonName: string) {
-    const { current: { X: playerOneList, O: playerTwoList } } = playersNeededToWinList;
-    const currentPlayerList = isItfirstPlayerTurn ? playerOneList : playerTwoList;
-    const otherplayerList = isItfirstPlayerTurn ? playerTwoList : playerOneList;
+    const {
+      current:
+        { X: playerOneList, O: playerTwoList },
+    } = playersNeededToWinList;
+    const currentPlayerList = isItfirstPlayerTurn
+      ? playerOneList
+      : playerTwoList;
+    const otherPlayerList = isItfirstPlayerTurn
+      ? playerTwoList
+      : playerOneList;
 
     if (buttonName in currentPlayerList) {
       if (currentPlayerList[buttonName] === 'done') {
@@ -41,9 +48,9 @@ function useTicTacToe() {
       Object.assign(currentPlayerList, helperMap[buttonName]);
     }
 
-    if (buttonName in otherplayerList) {
-      delete otherplayerList[otherplayerList[buttonName]];
-      delete otherplayerList[buttonName];
+    if (buttonName in otherPlayerList) {
+      delete otherPlayerList[otherPlayerList[buttonName]];
+      delete otherPlayerList[buttonName];
     }
   }
 
@@ -51,15 +58,26 @@ function useTicTacToe() {
     setIsItfirstPlayerTurn(!isItfirstPlayerTurn);
   }
 
-  function handleClick(event: MouseEvent<HTMLElement>) {
-    const buttonName = String(event.currentTarget.getAttribute('data-button-name'));
-    const buttonOrder = Number(event.currentTarget.getAttribute('data-button-order'));
+  function handlerPlayerPickAButton(event: MouseEvent<HTMLElement>) {
+    const buttonName = String(
+      event.currentTarget.getAttribute('data-button-name'),
+    );
+    const buttonOrder = Number(
+      event.currentTarget.getAttribute('data-button-order'),
+    );
 
     updateButtonStates(buttonName, buttonOrder);
     updateNeededToWinLists(buttonName);
     if (!winnerName) {
       toggleCurrentPlayer();
     }
+  }
+
+  function resetTheGame() {
+    setButtonState(initialButtonsState);
+    setIsItfirstPlayerTurn(true);
+    setWinnerName('');
+    playersNeededToWinList.current = initialRefObject;
   }
 
   return {
@@ -71,7 +89,8 @@ function useTicTacToe() {
       winnerName,
     },
     action: {
-      handleClick,
+      handlerPlayerPickAButton,
+      resetTheGame,
     },
   };
 }
